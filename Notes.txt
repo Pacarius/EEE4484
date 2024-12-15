@@ -1,0 +1,28 @@
+Snappable objects require a Snap Interactor and a Rigidbody.
+Snapping regions require a Collider + Rididbody for the detection zone.
+Snap locations need a collider and a snap interactable.
+
+
+
+
+Wrong scope. 
+>Lab about testing sensors with esp32
+>put esp32 onto breadboard
+-- keep rail indication
+-- snap top right corner
+
+>plug in wires with set positions
+--shitty 3d line renderer with noise
+--end me
+
+>plug sensors in
+
+>plug the divine microusb cable into the esp32
+--dangle it down from the void
+
+>check code
+--if there's enough time tell them which port is which and 
+
+>upload
+>if something is wrong it explodes
+ok

@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+      "ms-dotnettools.vscode-dotnet-runtime",
+      "ms-dotnettools.vscodeintellicode-csharp",
+      "visualstudiotoolsforunity.vstuc",
+      "visualstudioexptteam.intellicode-api-usage-examples",
+      "visualstudioexptteam.vscodeintellicode",
+      "ms-dotnettools.csdevkit",
+      "ms-dotnettools.csharp"
+    ]
+}

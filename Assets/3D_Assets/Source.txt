@@ -1,0 +1,2 @@
+"HC-SR04" (https://skfb.ly/oxVFS) by peddintiudaykiran176 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+"Temperature and humidity sensor DHT11" (https://skfb.ly/oQZ9Q) by Vicale200 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
