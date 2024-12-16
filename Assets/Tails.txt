@@ -1,0 +1,8 @@
+59 pos
+60 avo
+90 neg
+86 87 88 avo
+85 pos
+36 37 38 avo
+16 neg 
+10 neg
