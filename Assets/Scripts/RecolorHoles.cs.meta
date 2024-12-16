@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 852235962ba38884fb6e24858ca56c07
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - passthroughMaterial: {fileID: 2100000, guid: 9b41f358cacd16d4da2f0a789840bf02, type: 2}
+  - positiveMaterial: {fileID: 2100000, guid: 1497c9baba0e7494ba8ecc94d9092411, type: 2}
+  - negativeMaterial: {fileID: 2100000, guid: 96b9db7ba91dce04489d37bfde3cda30, type: 2}
+  - avoidMaterial: {fileID: 2100000, guid: 2b8bdf89d23705546a9cbc9e0e1ae87b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Esp32 : StateObjects
 {
-    public Vector3 Location = new Vector3(-0.213539228f, -0.0265290365f, -0.116301447f);
-    internal override Vector3 _location() => Location;
-
+    internal override Vector3 Location => new(-0.213539228f, -0.0265290365f, -0.116301447f);
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Esp32")
+        if (other.name == "Esp32")
         {
-           manager().SetEsp32(_location());
-           Destroy(this.gameObject);
+            base.OnTriggerEnter(other);
+            manager.Activate(_sceneObject);
+            manager._holes.Color();
+            Destroy(gameObject);
         }
     }
 }

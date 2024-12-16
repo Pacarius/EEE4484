@@ -4,34 +4,16 @@ using UnityEngine;
 
 public class RecolorHoles : MonoBehaviour
 {
+
     public Rails[] Rails;
-    public Material passthroughMaterial;
-    public Material positiveMaterial;
-    public Material negativeMaterial;
-    public Material avoidMaterial;
-    private void Start()
-    {
- //       Color();
-    }
     public void Color()
     {
-        foreach(var r in Rails)
+        foreach (var r in Rails)
         {
             foreach (var g in r.Pinouts)
             {
-                g.GetComponent<Renderer>().material = railMatch(r.RailType);
+                g.GetComponent<Renderer>().material = r.railMatch;
             }
-        }
-    }
-    public Material railMatch(PinType type)
-    {
-        switch (type)
-        {
-            case PinType.Passthrough: return passthroughMaterial;
-            case PinType.Positive: return positiveMaterial;
-            case PinType.Negative: return negativeMaterial;
-            case PinType.Avoid: return avoidMaterial;
-            default: return null;
         }
     }
 }
@@ -44,6 +26,13 @@ public class Rails
     {
         Pinouts = pins;
     }
+    public Material railMatch
+    {
+        get
+        {
+            return PinHelper.pinMaterial(RailType);
+        }
+    }
 }
 public enum PinType
 {
@@ -52,4 +41,16 @@ public enum PinType
     Negative,
     Avoid,
     Default
+}
+public static class PinHelper{
+    public static Material pinMaterial(PinType type){
+        return type switch
+        {
+            PinType.Passthrough => StateManager.Singleton.passthroughMaterial,
+            PinType.Positive => StateManager.Singleton.positiveMaterial,
+            PinType.Negative => StateManager.Singleton.negativeMaterial,
+            PinType.Avoid => StateManager.Singleton.avoidMaterial,
+            _ => null,
+        };
+    }
 }

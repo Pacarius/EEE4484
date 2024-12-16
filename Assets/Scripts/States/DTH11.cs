@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class DHT11 : StateObjects
 {
-    public Vector3 Location = new(-0.0290392339f, -0.063000001f, -0.0325014591f);
-    internal override Vector3 _location() => Location;
+
+    internal override Vector3 Location => new Vector3(-0.0292000007f, -0.0119000003f, -0.0322000012f);
     public override void OnTriggerEnter(Collider other)
     {
         if (other.name == "DHT11")
         {
-            manager().SetDHT11(_location());
-            Destroy(this.gameObject);
+            base.OnTriggerEnter(other);
+            manager.Activate(_sceneObject);
+            Destroy(gameObject);
         }
     }
 }
