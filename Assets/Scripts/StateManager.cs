@@ -22,6 +22,7 @@ public class StateManager : MonoBehaviour
     System.Action Initialise = () => { };
     public TextMeshProUGUI StateText;
     public TextMeshProUGUI DistanceText;
+    public Dictionary<int, List<GameObject>> stateObjects = new Dictionary<int, List<GameObject>>();
     List<string> stateTexts = new(){
         "Hi!, welcome to today's lab. We're going to be testing out some sensors today with the help of an Esp32 Module and a breadboard. First, let's connect the Esp32 to the breadboard. The Esp32 is a microcontroller that can be used to connect to the internet and interact with other devices.",
         "Next up, you're gonna see a couple of sensors pop up. Connect those to the breadboard."
@@ -51,6 +52,7 @@ public class StateManager : MonoBehaviour
             } catch (ArgumentException){
                 Debug.Log($"Possible duplicate of {state.Name} at {state.ID}.");
             }
+            stateObjects.Add(state.ID, new());
         }
         Initialise();
         // DeactivateFutureStates();
@@ -69,6 +71,16 @@ public class StateManager : MonoBehaviour
             target.SetActive(true);
             StateObjects so = target.GetComponent<StateObjects>();
             if(so) so.Identity.SetActive(true);
+        }
+        foreach(KeyValuePair<int, List<GameObject>> pair in stateObjects)
+        {
+            bool StateMatch = pair.Key == state;
+            {
+                foreach(GameObject target in pair.Value)
+                {
+                    target.SetActive(StateMatch);
+                }
+            }
         }
         StateText.text = stateTexts[state];
     }
