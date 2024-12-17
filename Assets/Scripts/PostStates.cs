@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class PostStates : MonoBehaviour
 {
+    public SensorText sensorText;
     public GameObject SR04;
     public GameObject Wood;
-    public Action<float> OnSR04Hit = delegate { };
-    void Awake(){
-        OnSR04Hit += OnHit;
-    }
-    void OnHit(float dist) =>  Debug.Log($"SR04 hit Wood at {dist}m"); 
+    public bool AirConditionerOn = false;
     void FixedUpdate()
     {
         RunSR04();
@@ -28,10 +25,25 @@ public class PostStates : MonoBehaviour
                 {
                     if (hit.collider.gameObject == Wood)
                     {
-                        OnSR04Hit(distanceToWood);
+                        // Debug.Log($"SR04 hit something at {distanceToWood:N2}m"); 
+                        sensorText.SR04Result = $"SR04 hit something at {distanceToWood:N2}m";
                     }
                 }
+                else 
+                {
+                    // Debug.Log("SR04 did not hit anything.");
+                    sensorText.SR04Result = "SR04 did not hit anything.";
+                }
             }
+            else 
+                {
+                    // Debug.Log("SR04 did not hit anything.");
+                    sensorText.SR04Result = "SR04 did not hit anything.";
+                }
         }
+    }
+    public void ToggleAirConditioner(){
+        AirConditionerOn = !AirConditionerOn;
+        sensorText.AirConditionerStatus = AirConditionerOn;
     }
 }

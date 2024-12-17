@@ -13,6 +13,7 @@ public class MicroUsb : StateObjects
             Destroy(Real);
             Fake.SetActive(true);
             HandGrab.SetActive(false);
+            manager.Activate();
             Destroy(this.gameObject);
         }
     }

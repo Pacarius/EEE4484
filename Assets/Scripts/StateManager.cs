@@ -1,9 +1,8 @@
-using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -18,15 +17,12 @@ public class StateManager : MonoBehaviour
     public Material negativeMaterial;
     public Material avoidMaterial;
     public Dictionary<int, State> States = new(); 
-    public int state { get; private set; } = 0;
-    System.Action Initialise = () => { };
+    public int state { get; private set; } = -1;
+    System.Action Initialise = () => { Singleton.OnStateChange(Singleton.state); Debug.Log($"Broadcasted state {Singleton.state}.");};
     public TextMeshProUGUI StateText;
     public TextMeshProUGUI DistanceText;
+    public Action<int> OnStateChange = (int state) => { };
     public Dictionary<int, List<GameObject>> stateObjects = new Dictionary<int, List<GameObject>>();
-    List<string> stateTexts = new(){
-        "Hi!, welcome to today's lab. We're going to be testing out some sensors today with the help of an Esp32 Module and a breadboard. First, let's connect the Esp32 to the breadboard. The Esp32 is a microcontroller that can be used to connect to the internet and interact with other devices.",
-        "Next up, you're gonna see a couple of sensors pop up. Connect those to the breadboard."
-    };
     public static StateManager Singleton
     {
         get => _singleton;
@@ -54,8 +50,12 @@ public class StateManager : MonoBehaviour
             }
             stateObjects.Add(state.ID, new());
         }
-        Initialise();
+        StartCoroutine(LateInit());
         // DeactivateFutureStates();
+    }
+    IEnumerator LateInit(){
+        yield return new WaitForSeconds(1);
+        Initialise();
     }
     // void DeactivateFutureStates(){
     //     foreach(State _state in States.Values){
@@ -82,7 +82,8 @@ public class StateManager : MonoBehaviour
                 }
             }
         }
-        StateText.text = stateTexts[state];
+        Debug.Log($"State {state} activated.");
+        OnStateChange(state);
     }
     public void Activate(SceneObject target)
     {
