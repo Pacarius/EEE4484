@@ -10,6 +10,7 @@ public class Snap : MonoBehaviour
     void FixedUpdate(){
             target.transform.localPosition = Location;
             target.transform.rotation = Quaternion.identity;
-            if(Oneshot) Destroy(this);
+        target.transform.Rotate(new(0, 90, 0));
+            if (Oneshot) Destroy(this);
     }
 }
